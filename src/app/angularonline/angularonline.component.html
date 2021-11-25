@@ -1,0 +1,47 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Take A Test</title>
+</head>
+
+<body class="container">
+
+<form  (ngSubmit)="onSubmit()">   
+    <div class="quiz-area" ng-show="inProgress">
+        <div ng-show="!quizOver" *ngFor="let questions of Questions, let i = index" ng-init="parentIndex = $index">
+          <h2 id="question">{{questions.QuestionText}}</h2>
+          <div id="options">
+            <div>
+              
+            <div *ngFor="let q of questions.options, let j = index">
+              <label>
+               
+                <input type="radio" [value]="q.OptionValue" [(ngModel)]="questions.selectedOption"
+                  name="radAnswer_{{i}}_{{j}}"  
+                  >
+                 
+                {{ q.OptionText }}
+              </label>
+            </div>
+            <div *ngIf="!isempty "class="is-incorrect" >
+             {{alert}}
+            </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="form-group">
+    
+          <button type="submit" id="finishQuiz" >Finish the Quiz</button>
+        </div>
+      </div>
+    </form>
+</body>
+
+</html>

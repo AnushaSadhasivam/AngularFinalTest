@@ -1,0 +1,43 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Take A Test</title>
+</head>
+
+<body class="container">
+
+<form >   
+    <div class="quiz-area" ng-show="inProgress">
+        <div ng-show="!quizOver" *ngFor="let questions of Questions, let i = index" ng-init="parentIndex = $index">
+          <h2 id="question">{{questions.QuestionText}}</h2>
+          <div id="options">
+            <div *ngFor="let q of questions.options, let j = index">
+              <label>
+               
+                <input type="radio" [value]="q.OptionValue" [(ngModel)]="questions.selectedOption"
+                  name="radAnswer_{{i}}_{{j}}"  [ngModelOptions]="{standalone: true}"  
+                 disabled >
+                 
+                {{ q.OptionText }}
+              </label>
+
+              
+            </div>
+            
+           
+            <h6  class="is-correct">Correct answer is {{questions.ans}}</h6>
+          </div>
+        </div>
+    
+       
+      </div>
+    </form>
+</body>
+
+</html>
